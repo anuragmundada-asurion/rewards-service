@@ -34,7 +34,7 @@ public class RewardsController {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content)})
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<List<CustomerRewards>> getCustomerRewards() {
+    public ResponseEntity<List<CustomerRewards>> getListOfCustomerRewards() {
         LOGGER.info("Start calculating rewards: {}", System.nanoTime());
 
         List<CustomerRewards> customerRewards = rewardsService.getRewards();

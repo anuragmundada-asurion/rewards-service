@@ -46,7 +46,7 @@ public class RewardsControllerTests {
     @Test
     public void testGetCustomerRewards() {
         Mockito.when(rewardsService.getRewards()).thenReturn(customerRewardsList);
-        ResponseEntity<List<CustomerRewards>> response = rewardsController.getCustomerRewards();
+        ResponseEntity<List<CustomerRewards>> response = rewardsController.getListOfCustomerRewards();
         Assert.assertEquals(response.getBody().get(0).getTotalRewards(), 100);
     }
 }
