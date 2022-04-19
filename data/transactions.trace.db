@@ -1,0 +1,904 @@
+2022-04-18 20:13:41 database: wrong user or password; user: "SA"
+org.h2.message.DbException: Wrong user name or password [28000-200]
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.engine.Engine.openSession(Engine.java:131)
+	at org.h2.engine.Engine.openSession(Engine.java:192)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:309)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:289)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:785)
+	at org.h2.server.web.WebApp.login(WebApp.java:1008)
+	at org.h2.server.web.WebApp.process(WebApp.java:223)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 55 more
+2022-04-18 20:33:29 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "MATH" not found; SQL statement:
+SELECT customer_name, SUM(CASE WHEN Math.ceil(purchase_amount) <= 50 THEN 0 WHEN Math.ceil(purchase_amount) > 100 THEN (50 + 2*(Math.ceil(purchase_amount)-100)) ELSE Math.ceil(purchase_amount) - 50 END) AS points
+FROM purchase_details GROUP BY customer_name [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.readCase(Parser.java:4800)
+	at org.h2.command.Parser.readTerm(Parser.java:4436)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.readAggregate(Parser.java:3492)
+	at org.h2.command.Parser.readFunction(Parser.java:3755)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 20:36:39 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PURCHASE_DATE" must be in the GROUP BY list; SQL statement:
+SELECT customer_name, EXTRACT(MONTH FROM purchase_date), SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points
+FROM purchase_details GROUP BY 1, 2 [90016-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:182)
+	at org.h2.expression.function.Function.updateAggregate(Function.java:3049)
+	at org.h2.command.dml.Select.updateAgg(Select.java:545)
+	at org.h2.command.dml.Select.gatherGroup(Select.java:525)
+	at org.h2.command.dml.Select.queryGroup(Select.java:487)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:839)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:201)
+	at org.h2.command.dml.Query.query(Query.java:489)
+	at org.h2.command.dml.Query.query(Query.java:451)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:285)
+	at org.h2.command.Command.executeQuery(Command.java:195)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:222)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 20:36:52 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PURCHASE_DATE" must be in the GROUP BY list; SQL statement:
+SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS purchase_date, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points
+FROM purchase_details GROUP BY 1, 2 [90016-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:182)
+	at org.h2.expression.function.Function.updateAggregate(Function.java:3049)
+	at org.h2.expression.Alias.updateAggregate(Alias.java:74)
+	at org.h2.command.dml.Select.updateAgg(Select.java:545)
+	at org.h2.command.dml.Select.gatherGroup(Select.java:525)
+	at org.h2.command.dml.Select.queryGroup(Select.java:487)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:839)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:201)
+	at org.h2.command.dml.Query.query(Query.java:489)
+	at org.h2.command.dml.Query.query(Query.java:451)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:285)
+	at org.h2.command.Command.executeQuery(Command.java:195)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:222)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 20:46:53 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X [42001-200]
+2022-04-18 20:48:54 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42001-200]
+2022-04-18 20:49:25 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT X.CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] X.MONTH, 'points', X.POINTS)) AS REWARDSBYMONTH, SUM(X.POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT X.customer_name, JSON_ARRAY(JSON_OBJECT('month', X.month, 'points', X.points)) AS rewardsByMonth, SUM(X.points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42001-200]
+2022-04-18 20:49:33 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT X.CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] X.MONTH, 'points', X.POINTS)) AS REWARDSBYMONTH, SUM(X.POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT X.customer_name, JSON_ARRAY(JSON_OBJECT('month', X.month, 'points', X.points)) AS rewardsByMonth, SUM(X.points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42001-200]
+2022-04-18 20:49:38 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT X.CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] X.MONTH, 'points', X.POINTS)) AS REWARDSBYMONTH, SUM(X.POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT X.customer_name, JSON_ARRAY(JSON_OBJECT('month', X.month, 'points', X.points)) AS rewardsByMonth, SUM(X.points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42001-200]
+2022-04-18 20:50:05 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42001-200]
+2022-04-18 20:50:19 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH)"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) [42001-200]
+2022-04-18 20:52:27 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH)"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) [42001-200]
+2022-04-18 20:52:34 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+
+SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+
+SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month [42001-200]
+2022-04-18 20:52:41 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+
+SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+
+SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month [42001-200]
+2022-04-18 20:52:59 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM [42001-200]
+2022-04-18 20:53:23 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM [42001-200]
+2022-04-18 20:53:23 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PURCHASE_DATE" must be in the GROUP BY list; SQL statement:
+SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name [90016-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:182)
+	at org.h2.expression.function.Function.updateAggregate(Function.java:3049)
+	at org.h2.expression.Alias.updateAggregate(Alias.java:74)
+	at org.h2.command.dml.Select.updateAgg(Select.java:545)
+	at org.h2.command.dml.Select.gatherGroup(Select.java:525)
+	at org.h2.command.dml.Select.queryGroup(Select.java:487)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:839)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:201)
+	at org.h2.command.dml.Query.query(Query.java:489)
+	at org.h2.command.dml.Query.query(Query.java:451)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:285)
+	at org.h2.command.Command.executeQuery(Command.java:195)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:222)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 20:53:23 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "MONTH[*]"; expected "MERGE"; SQL statement:
+month [42001-200]
+2022-04-18 20:53:57 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM [42001-200]
+2022-04-18 20:53:57 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PURCHASE_DATE" must be in the GROUP BY list; SQL statement:
+SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name [90016-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:182)
+	at org.h2.expression.function.Function.updateAggregate(Function.java:3049)
+	at org.h2.expression.Alias.updateAggregate(Alias.java:74)
+	at org.h2.command.dml.Select.updateAgg(Select.java:545)
+	at org.h2.command.dml.Select.gatherGroup(Select.java:525)
+	at org.h2.command.dml.Select.queryGroup(Select.java:487)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:839)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:201)
+	at org.h2.command.dml.Query.query(Query.java:489)
+	at org.h2.command.dml.Query.query(Query.java:451)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:285)
+	at org.h2.command.Command.executeQuery(Command.java:195)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:222)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 20:54:10 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAY(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAY(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM [42001-200]
+2022-04-18 21:07:43 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, ARRAY_AGG(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH)"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, ARRAY_AGG(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) [42001-200]
+2022-04-18 21:08:08 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, ARRAY_AGG(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, ARRAY_AGG(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42001-200]
+2022-04-18 21:08:29 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, ARRAY_AGG(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, ARRAY_AGG(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month [42001-200]
+2022-04-18 21:08:29 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement ")[*] X GROUP BY CUSTOMER_NAME"; SQL statement:
+) X GROUP BY customer_name [42000-200]
+2022-04-18 21:08:40 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, ARRAY_AGG(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, ARRAY_AGG(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42001-200]
+2022-04-18 21:09:08 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42001-200]
+2022-04-18 21:29:48 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP BY CUSTOMER_NAME"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42001-200]
+2022-04-18 21:30:40 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month',[*] MONTH, 'points', POINTS)) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM PURCHASE_DETAILS"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month', month, 'points', points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM purchase_details [42001-200]
+2022-04-18 21:30:40 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:31:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month')[*]) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM PURCHASE_DETAILS"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month')) AS rewardsByMonth, SUM(points) AS totalRewards FROM purchase_details [42001-200]
+2022-04-18 21:31:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:31:10 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month')[*]) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM PURCHASE_DETAILS"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month')) AS rewardsByMonth, SUM(points) AS totalRewards FROM purchase_details [42001-200]
+2022-04-18 21:31:10 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:33:15 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT(""month"")[*]) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM PURCHASE_DETAILS"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT("month")) AS rewardsByMonth, SUM(points) AS totalRewards FROM purchase_details [42001-200]
+2022-04-18 21:33:15 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:34:46 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECTAGG(""month"")[*]) AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM PURCHASE_DETAILS"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECTAGG("month")) AS rewardsByMonth, SUM(points) AS totalRewards FROM purchase_details [42001-200]
+2022-04-18 21:34:46 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:34:57 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECTAGG(""month"")[*] AS REWARDSBYMONTH, SUM(POINTS) AS TOTALREWARDS FROM PURCHASE_DETAILS"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECTAGG("month") AS rewardsByMonth, SUM(points) AS totalRewards FROM purchase_details [42001-200]
+2022-04-18 21:34:57 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:35:15 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECTAGG(""month"")[*] AS REWARDSBYMONTH FROM PURCHASE_DETAILS"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECTAGG("month") AS rewardsByMonth FROM purchase_details [42001-200]
+2022-04-18 21:35:15 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:35:28 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "JSON_AGG" not found; SQL statement:
+SELECT customer_name, JSON_AGG("month") AS rewardsByMonth FROM purchase_details [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 21:35:28 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:37:19 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT(""month"")[*] AS REWARDSBYMONTH FROM PURCHASE_DETAILS"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT("month") AS rewardsByMonth FROM purchase_details [42001-200]
+2022-04-18 21:37:19 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:37:46 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT(""month"",[*] EXTRACT(MONTH FROM PURCHASE_DATE) ) FROM PURCHASE_DETAILS"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT("month", EXTRACT(MONTH FROM purchase_date) ) FROM purchase_details [42001-200]
+2022-04-18 21:37:46 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:37:58 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*] EXTRACT(MONTH FROM PURCHASE_DATE) ) FROM PURCHASE_DETAILS"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month', EXTRACT(MONTH FROM purchase_date) ) FROM purchase_details [42001-200]
+2022-04-18 21:37:58 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:38:16 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*] EXTRACT(MONTH FROM PURCHASE_DATE)) FROM PURCHASE_DETAILS GROUP BY 1"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month', EXTRACT(MONTH FROM purchase_date)) FROM purchase_details GROUP BY 1 [42001-200]
+2022-04-18 21:38:16 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) GROUP[*] BY CUSTOMER_NAME"; SQL statement:
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) GROUP BY customer_name [42000-200]
+2022-04-18 21:39:35 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*] EXTRACT(MONTH FROM PURCHASE_DATE)) FROM PURCHASE_DETAILS GROUP BY CUSTOMER_DATE"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month', EXTRACT(MONTH FROM purchase_date)) FROM purchase_details GROUP BY customer_date [42001-200]
+2022-04-18 21:39:52 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*] EXTRACT(MONTH FROM PURCHASE_DATE)) FROM PURCHASE_DETAILS GROUP BY CUSTOMER_DATE"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month', EXTRACT(MONTH FROM purchase_date)) FROM purchase_details GROUP BY customer_date [42001-200]
+2022-04-18 21:39:58 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*] EXTRACT(MONTH FROM PURCHASE_DATE)) FROM PURCHASE_DETAILS GROUP BY CUSTOMER_DATE"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month', EXTRACT(MONTH FROM purchase_date)) FROM purchase_details GROUP BY customer_date [42001-200]
+2022-04-18 21:40:10 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*] EXTRACT(MONTH FROM PURCHASE_DATE)) FROM PURCHASE_DETAILS GROUP BY CUSTOMER_DATE"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month', EXTRACT(MONTH FROM purchase_date)) FROM purchase_details GROUP BY customer_date [42001-200]
+2022-04-18 21:40:33 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*]EXTRACT(MONTH FROM PURCHASE_DATE)) FROM PURCHASE_DETAILS GROUP BY CUSTOMER_DATE"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month',EXTRACT(MONTH FROM purchase_date)) FROM purchase_details GROUP BY customer_date [42001-200]
+2022-04-18 21:42:49 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('month',[*] 'EXTRACT(MONTH FROM purchase_date)') FROM PURCHASE_DETAILS GROUP BY CUSTOMER_DATE"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('month', 'EXTRACT(MONTH FROM purchase_date)') FROM purchase_details GROUP BY customer_date [42001-200]
+2022-04-18 21:44:16 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('a',[*]1, 'b', 2) FROM PURCHASE_DETAILS GROUP BY CUSTOMER_DATE"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('a',1, 'b', 2) FROM purchase_details GROUP BY customer_date [42001-200]
+2022-04-18 21:44:30 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('a',[*]1, 'b', 2) FROM PURCHASE_DETAILS"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('a',1, 'b', 2) FROM purchase_details [42001-200]
+2022-04-18 21:50:51 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_OBJECT('a',[*]1, 'b', 2) FROM PURCHASE_DETAILS"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, VALUE, :"; SQL statement:
+SELECT customer_name, JSON_OBJECT('a',1, 'b', 2) FROM purchase_details [42001-200]
+2022-04-18 21:53:27 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PURCHASE_DATE" not found; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month': EXTRACT(MONTH FROM purchase_date), 'points':points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.expression.aggregate.AbstractAggregate.optimize(AbstractAggregate.java:92)
+	at org.h2.expression.aggregate.Aggregate.optimize(Aggregate.java:705)
+	at org.h2.expression.Alias.optimize(Alias.java:52)
+	at org.h2.command.dml.Select.prepare(Select.java:1206)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 21:57:44 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "CUSTOMER_ID" not found; SQL statement:
+CREATE FORCE VIEW (
+    SELECT
+        "CUSTOMER_ID",
+        "CUSTOMER_NAME",
+        EXTRACT(MONTH FROM "PURCHASE_DATE") AS "MONTH",
+        SUM(CASE WHEN (FLOOR("PURCHASE_AMOUNT") <= 50) THEN 0 WHEN (FLOOR("PURCHASE_AMOUNT") > 100) THEN (50 + (2 * (FLOOR("PURCHASE_AMOUNT") - 100))) ELSE (FLOOR("PURCHASE_AMOUNT") - 50) END) AS "POINTS"
+    FROM "PUBLIC"."PURCHASE_DETAILS"
+    GROUP BY "CUSTOMER_ID", "CUSTOMER_NAME", EXTRACT(MONTH FROM "PURCHASE_DATE")
+) AS
+SELECT
+    "CUSTOMER_ID",
+    "CUSTOMER_NAME",
+    EXTRACT(MONTH FROM "PURCHASE_DATE") AS "MONTH",
+    SUM(CASE WHEN (FLOOR("PURCHASE_AMOUNT") <= 50) THEN 0 WHEN (FLOOR("PURCHASE_AMOUNT") > 100) THEN (50 + (2 * (FLOOR("PURCHASE_AMOUNT") - 100))) ELSE (FLOOR("PURCHASE_AMOUNT") - 50) END) AS "POINTS"
+FROM "PUBLIC"."PURCHASE_DETAILS"
+GROUP BY "CUSTOMER_ID", "CUSTOMER_NAME", EXTRACT(MONTH FROM "PURCHASE_DATE") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Select.prepare(Select.java:1206)
+	at org.h2.command.Parser.prepare(Parser.java:723)
+	at org.h2.engine.Session.prepare(Session.java:622)
+	at org.h2.table.TableView.compileViewQuery(TableView.java:116)
+	at org.h2.table.TableView.initColumnsAndTables(TableView.java:168)
+	at org.h2.table.TableView.init(TableView.java:109)
+	at org.h2.table.TableView.<init>(TableView.java:71)
+	at org.h2.table.TableView.createTempView(TableView.java:548)
+	at org.h2.command.dml.Query.toTable(Query.java:928)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1895)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 21:57:59 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "PURCHASE_ID" must be in the GROUP BY list; SQL statement:
+SELECT purchase_id, customer_name, JSON_ARRAYAGG(JSON_OBJECT('month': month, 'points':points)) AS rewardsByMonth, SUM(points) AS totalRewards FROM
+(SELECT purchase_id, customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY purchase_id, customer_name, month) X GROUP BY customer_name [90016-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.updateAggregate(ExpressionColumn.java:182)
+	at org.h2.command.dml.Select.updateAgg(Select.java:545)
+	at org.h2.command.dml.Select.gatherGroup(Select.java:525)
+	at org.h2.command.dml.Select.queryGroup(Select.java:487)
+	at org.h2.command.dml.Select.queryWithoutCache(Select.java:839)
+	at org.h2.command.dml.Query.queryWithoutCacheLazyCheck(Query.java:201)
+	at org.h2.command.dml.Query.query(Query.java:489)
+	at org.h2.command.dml.Query.query(Query.java:451)
+	at org.h2.command.CommandContainer.query(CommandContainer.java:285)
+	at org.h2.command.Command.executeQuery(Command.java:195)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:222)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2022-04-18 22:35:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month': MONTH, 'points': POINTS)) AS MONTHLY_REWARDS FORMAT[*] JSON, SUM(POINTS) AS TOTAL_REWARDS FROM
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME;"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month': month, 'points': points)) AS monthly_rewards FORMAT JSON, SUM(points) AS total_rewards FROM
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name; [42000-200]
+2022-04-18 22:36:08 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month': MONTH, 'points': POINTS)) AS MONTHLY_REWARDS FORMAT[*] JSON, SUM(POINTS) AS TOTAL_REWARDS FROM 
+(SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month': month, 'points': points)) AS monthly_rewards FORMAT JSON, SUM(points) AS total_rewards FROM 
+(SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42000-200]
+2022-04-18 22:36:28 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month': MONTH, 'points': POINTS)) AS MONTHLY_REWARDS FORMAT[*] JSON, SUM(POINTS) AS TOTAL_REWARDS FROM (SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month': month, 'points': points)) AS monthly_rewards FORMAT JSON, SUM(points) AS total_rewards FROM (SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42000-200]
+2022-04-18 22:36:48 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CUSTOMER_NAME, JSON_ARRAYAGG(JSON_OBJECT('month': MONTH, 'points': POINTS)) FORMAT JSONAS[*] MONTHLY_REWARDS, SUM(POINTS) AS TOTAL_REWARDS FROM (SELECT CUSTOMER_NAME, EXTRACT(MONTH FROM PURCHASE_DATE) AS MONTH, SUM(CASE WHEN FLOOR(PURCHASE_AMOUNT) <= 50 THEN 0 WHEN FLOOR(PURCHASE_AMOUNT) > 100 THEN (50 + 2*(FLOOR(PURCHASE_AMOUNT)-100)) ELSE FLOOR(PURCHASE_AMOUNT) - 50 END) AS POINTS FROM PURCHASE_DETAILS GROUP BY CUSTOMER_NAME, MONTH) X GROUP BY CUSTOMER_NAME"; SQL statement:
+SELECT customer_name, JSON_ARRAYAGG(JSON_OBJECT('month': month, 'points': points)) FORMAT JSONAS monthly_rewards, SUM(points) AS total_rewards FROM (SELECT customer_name, EXTRACT(MONTH FROM purchase_date) AS month, SUM(CASE WHEN FLOOR(purchase_amount) <= 50 THEN 0 WHEN FLOOR(purchase_amount) > 100 THEN (50 + 2*(FLOOR(purchase_amount)-100)) ELSE FLOOR(purchase_amount) - 50 END) AS points FROM purchase_details GROUP BY customer_name, month) X GROUP BY customer_name [42000-200]
